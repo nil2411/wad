@@ -1,0 +1,68 @@
+✅ Step 1: Launch EC2 Instance
+Go to AWS Console → EC2 → Launch Instance
+
+Select Ubuntu 22.04 LTS as the AMI
+
+Choose instance type: t2.micro (Free Tier)
+
+Create or select a key pair (required even if not used)
+
+In Network Settings (Security Group), allow the following ports:
+
+Port 22 (SSH)
+
+Port 3000 (for Node.js web app access)
+
+Launch the instance
+
+
+
+✅ Step 2: Connect Using EC2 Instance Connect
+Go to AWS EC2 Dashboard → Instances
+
+Select your instance
+
+Click the Connect button
+
+Choose the EC2 Instance Connect (browser-based SSH) tab
+
+Click Connect to open a terminal in your browser
+
+
+
+✅ Step 3: Install Required Software (on EC2)
+Run the following commands in the browser terminal:
+
+Update packages
+
+Install Node.js and npm
+
+Install Git (if you're cloning your project)
+
+
+
+
+✅ Step 4: Upload or Clone the Project
+You can either:
+
+Use Git to clone a repository
+
+Or use scp from your local machine to upload project files to the instance
+
+After upload or cloning, navigate into the project directory and run npm install to install dependencies.
+
+
+
+✅ Step 5: Start the Application
+Inside the project folder, start your Node.js application using node server.js.
+Make sure your app is configured to listen on port 3000.
+
+
+
+
+✅ Step 6: View the Website
+Open your browser and visit:
+http://<EC2-PUBLIC-IP>:3000
+
+Replace <EC2-PUBLIC-IP> with the public IPv4 address of your EC2 instance (found in the EC2 dashboard).
+
