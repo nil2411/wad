@@ -1,0 +1,14 @@
+Update package list:
+sudo apt update
+
+Install Docker:
+sudo apt install -y docker.io
+
+Start Docker service:
+sudo systemctl start docker
+
+Enable Docker to run at boot:
+sudo systemctl enable docker
+
+Run OpenJDK container with JShell:
+docker run -it openjdk:17 jshell

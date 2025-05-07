@@ -1,0 +1,7 @@
+npm install -g @angular/cli@latest
+
+ng new NewProject
+
+cd NewProject
+
+ng serve

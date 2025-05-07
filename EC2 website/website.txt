@@ -1,0 +1,96 @@
+1. Launch EC2 Instance
+
+Go to the AWS EC2 Dashboard.
+
+Click "Launch Instance".
+
+Set Name: StaticWebsiteServer.
+
+Choose AMI: Ubuntu Server 22.04 LTS.
+
+Choose Instance Type: t2.micro (Free Tier).
+
+Choose or create a key pair (can skip downloading if using EC2 Instance Connect).
+
+In Network Settings, click "Edit" and add these inbound rules:
+
+SSH, Port 22, Source: My IP
+
+HTTP, Port 80, Source: Anywhere (0.0.0.0/0)
+
+Click "Launch Instance".
+
+
+
+2. Connect Using EC2 Instance Connect
+
+Go to EC2 > Instances.
+
+Select your instance.
+
+Click "Connect".
+
+Choose the "EC2 Instance Connect" tab.
+
+Click "Connect" to open the browser-based terminal.
+
+
+
+
+3. Install Apache Web Server
+
+In the terminal, run these commands one by one:
+
+sudo apt update
+
+sudo apt install apache2 -y
+
+sudo systemctl start apache2
+
+sudo systemctl enable apache2
+
+
+
+
+4. Add Static Website Content
+
+Navigate to the default web directory:
+
+cd /var/www/html
+
+Remove the default index file:
+
+sudo rm index.html
+
+Create a new index file with your website content:
+
+sudo nano index.html
+
+Add this sample HTML content:
+
+<!DOCTYPE html>
+
+<html>
+
+<head><title>My Static Site</title></head>
+
+<body><h1>Welcome to My Static Website</h1></body>
+
+</html>
+
+Save and exit the editor (press Ctrl + O, Enter, then Ctrl + X).
+
+
+
+
+5. View the Static Website
+
+Go back to the EC2 instance list.
+
+Copy your instance’s Public IPv4 address.
+
+Open a web browser.
+
+Visit http://<your-ec2-public-ip> (replace with actual IP).
+
+You should see your custom static web page.

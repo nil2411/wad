@@ -1,0 +1,63 @@
+1. Launch EC2 Instance
+
+Go to the AWS EC2 Dashboard.
+
+Click "Launch Instance".
+
+Set Name: UbuntuApacheServer.
+
+Choose AMI: Ubuntu Server 22.04 LTS.
+
+Choose Instance Type: t2.micro (Free Tier).
+
+Choose or create a key pair (you can skip downloading if using EC2 Instance Connect).
+
+In Network Settings, click "Edit" and add the following inbound rules:
+
+SSH, Port 22, Source: My IP
+
+HTTP, Port 80, Source: Anywhere (0.0.0.0/0)
+
+Click "Launch Instance".
+
+
+
+2. Connect to EC2 Using EC2 Instance Connect
+
+Go to EC2 > Instances.
+
+Select your instance.
+
+Click "Connect".
+
+In the EC2 Instance Connect tab, click "Connect" to open the terminal in the browser.
+
+
+
+
+3. Install and Start Apache
+
+In the terminal, type and run the following commands one by one:
+
+sudo apt update
+
+sudo apt install apache2 -y
+
+sudo systemctl start apache2
+
+sudo systemctl enable apache2
+
+
+
+
+4. Verify Apache Installation
+
+Go back to the EC2 instance list.
+
+Copy the Public IPv4 address of your instance.
+
+Open a web browser.
+
+Visit http://<your-ec2-public-ip> (replace with the actual IP address).
+
+You should see the Apache2 Ubuntu Default Page.

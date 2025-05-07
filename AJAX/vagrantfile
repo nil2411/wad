@@ -1,0 +1,25 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/jammy64"  # Ubuntu 22.04
+    config.vm.network "forwarded_port", guest: 3000, host: 3000
+    
+    config.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+    
+    config.vm.provision "shell", inline: <<-SHELL
+      # Update package list
+      apt-get update
+      
+      # Install Node.js and npm
+      curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+      apt-get install -y nodejs
+      
+      # Install project dependencies
+      cd /vagrant
+      npm init -y
+      npm install express body-parser
+      
+      # Start the server (will run in background)
+      nohup node server.js > server.log 2>&1 &
+    SHELL
+  end

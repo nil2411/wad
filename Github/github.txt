@@ -1,0 +1,21 @@
+Create a folder and go inside it:
+mkdir myapp && cd myapp
+
+Create a file:
+echo "<h1>Hello World</h1>" > index.html
+
+Initialize Git:
+git init
+
+Add all files:
+git add .
+
+Commit the changes:
+git commit -m "Initial commit"
+
+Add GitHub remote:
+git remote add origin https://github.com/YOUR_USERNAME/myapp.git
+
+Push to GitHub:
+git push -u origin master
+(Use main instead of master if needed)

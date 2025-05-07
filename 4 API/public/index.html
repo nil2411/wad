@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User CRUD</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #34495e;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      background-color: white;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-info {
+      flex-grow: 1;
+    }
+
+    .user-actions button {
+      margin-left: 10px;
+      background-color: #e74c3c;
+    }
+
+    .user-actions button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Management</h1>
+
+  <h2>Create User</h2>
+  <input type="text" id="name" placeholder="Name" />
+  <input type="email" id="email" placeholder="Email" />
+  <button onclick="createUser()">Create</button>
+
+  <h2>All Users</h2>
+  <button onclick="getUsers()">Refresh</button>
+  <ul id="userList"></ul>
+
+  <script>
+    const API_URL = 'http://localhost:5000/users';
+
+    async function createUser() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email })
+      });
+
+      const data = await res.json();
+      alert(data.message || 'User created');
+      getUsers();
+    }
+
+    async function getUsers() {
+      const res = await fetch(API_URL);
+      const users = await res.json();
+
+      const userList = document.getElementById('userList');
+      userList.innerHTML = '';
+
+      users.forEach(user => {
+        const li = document.createElement('li');
+
+        li.innerHTML = `
+          <div class="user-info">${user.name} (${user.email})</div>
+          <div class="user-actions">
+            <button onclick="deleteUser('${user._id}')">Delete</button>
+          </div>
+        `;
+        userList.appendChild(li);
+      });
+    }
+
+    async function deleteUser(id) {
+      const res = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE'
+      });
+
+      const data = await res.json();
+      alert(data.message);
+      getUsers();
+    }
+
+    window.onload = getUsers;
+  </script>
+</body>
+</html>
