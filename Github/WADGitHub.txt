@@ -1,0 +1,37 @@
+Login GitHub
+Install Git 
+Create and Open Folder
+
+
+
+Open Terminal in VsCode
+-	mkdir Newfoldername(create folder and any text file write something)
+ 	cd foldername
+	git init
+	git add .
+	git status
+	
+
+Open GitHub
+	Profile
+	Your repository 
+	Create new
+	Name repository
+	Create
+	Copy Link
+
+Terminal
+	git remote add origin Paste Link
+	git commit -m "message"
+	git push -u origin master
+Done
+
+
+Want to add again
+
+Terminal
+	Create any text file Write something
+	git add .
+	git status
+	git remote add origin Paste Link
+	git commit -m "message"
