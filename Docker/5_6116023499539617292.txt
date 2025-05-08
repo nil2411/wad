@@ -1,0 +1,43 @@
+sudo apt-get update
+sudo apt install docker.io
+
+if docker isn't running start it
+sudo systemctl start docker
+
+List the images
+sudo docker images
+
+Show running containers
+sudo docker ps
+
+To show all containers(running + stopped)
+sudo docker ps -a
+
+Delete Docker
+sudo docker rmi IMAGE_ID
+
+if the image is in use , stop and remove the container first
+sudo docker stop CONTAINER_ID
+sudo docker rm CONTAINER_ID
+
+
+ENVIRONMENT
+
+	Java
+		sudo docker pull OpenJDK
+		sudo docker run -it openjdk jshell(if its not working properly just type 'jshell')
+		write code
+		/exit
+	Python
+		sudo docker pull python
+		docker run -it python
+		write code
+		exit()
+
+Perform Operation
+sudo docker ps -a
+sudo docker stop CONTAINER_ID
+sudo docker rm CONTAINER_ID
+
+TO REMOVER ALL STOPPED CONTAINERS
+sudo container prune
