@@ -1,88 +1,146 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Simple jQuery Mobile Site</title>
+  <title>My College</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- jQuery Mobile CDN -->
+  <!-- jQuery Mobile CSS + JS -->
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-  <!-- Custom CSS -->
+  <!-- Additional CSS for styling -->
   <style>
     body {
       font-family: Arial, sans-serif;
     }
-    .custom-header {
-      background-color: #2196f3 !important;
-      color: white !important;
+    h1, h2 {
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #333;
     }
-    .custom-footer {
-      background-color: #0d47a1 !important;
-      color: white !important;
+    p {
+      text-align: justify;
+      line-height: 1.6;
+      font-size: 1em;
+      margin: 0 10px;
+      color: #555;
     }
-    .ui-btn {
-      background-color: #1976d2 !important;
-      color: white !important;
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      height: auto;
     }
-    .ui-content p {
-      font-size: 16px;
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    ul li {
+      padding: 8px 0;
+      font-size: 1.1em;
+      color: #333;
+      border-bottom: 1px solid #ddd;
+    }
+    a {
+      text-decoration: none;
+      color: #0078d4;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <!-- Home Page -->
-  <div data-role="page" id="home">
-    <div data-role="header" class="custom-header">
-      <h1>Home</h1>
-    </div>
-    <div data-role="content">
-      <p>Welcome to our mobile site!</p>
-      <a href="#about" class="ui-btn">About</a>
-      <a href="#contact" class="ui-btn">Contact Us</a>
-    </div>
-    <div data-role="footer" class="custom-footer">
-      <h4>&copy; 2025 MyMobileSite</h4>
-    </div>
-  </div>
-
-  <!-- About Page -->
-  <div data-role="page" id="about">
-    <div data-role="header" class="custom-header">
-      <h1>About</h1>
-    </div>
-    <div data-role="content">
-      <p>This is a demo mobile website built with jQuery Mobile.</p>
-      <a href="#home" class="ui-btn">Back</a>
-    </div>
-    <div data-role="footer" class="custom-footer">
-      <h4>&copy; 2025 MyMobileSite</h4>
+<!-- Home Page -->
+<div data-role="page" id="home">
+  <div data-role="header">
+    <h1>My College</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#home" class="ui-btn-active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </div>
 
-  <!-- Contact Page -->
-  <div data-role="page" id="contact">
-    <div data-role="header" class="custom-header">
-      <h1>Contact</h1>
-    </div>
-    <div data-role="content">
-      <form>
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" placeholder="Your name">
+  <div data-role="content">
+    <h2>Welcome to My College</h2>
+    <p>This is the home page of our college website built using jQuery Mobile. Our college offers various courses and focuses on quality education with a strong emphasis on practical knowledge.</p>
+    <img src="campus.jpg" alt="College Image">
+  </div>
+</div>
 
-        <label for="message">Message:</label>
-        <textarea name="message" id="message" placeholder="Your message"></textarea>
-
-        <input type="submit" value="Send" class="ui-btn">
-      </form>
-      <a href="#home" class="ui-btn">Back</a>
-    </div>
-    <div data-role="footer" class="custom-footer">
-      <h4>&copy; 2025 MyMobileSite</h4>
+<!-- About Page -->
+<div data-role="page" id="about">
+  <div data-role="header">
+    <h1>About Us</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about" class="ui-btn-active">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </div>
+
+  <div data-role="content">
+    <h2>About My College</h2>
+    <p>We provide quality education with a focus on technology, innovation, and leadership. Our faculty is committed to offering students the best possible learning experience.</p>
+  </div>
+</div>
+
+<!-- Courses Page -->
+<div data-role="page" id="courses">
+  <div data-role="header">
+    <h1>Courses</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses" class="ui-btn-active">Courses</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="content">
+    <h2>Courses Offered</h2>
+    <ul data-role="listview">
+      <li>Bachelor of Technology (B.Tech)</li>
+      <li>Bachelor of Science (B.Sc)</li>
+      <li>Master of Computer Applications (MCA)</li>
+      <li>Diploma in Engineering</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Contact Page -->
+<div data-role="page" id="contact">
+  <div data-role="header">
+    <h1>Contact Us</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#contact" class="ui-btn-active">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="content">
+    <h2>Get in Touch</h2>
+    <p><strong>Email:</strong> <a href="mailto:info@mycollege.edu">info@mycollege.edu</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+911234567890">+91-1234567890</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/school/mycollege" target="_blank">My College on LinkedIn</a></p>
+  </div>
+</div>
 
 </body>
 </html>
