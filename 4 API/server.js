@@ -1,56 +1,57 @@
 const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
+const cors = require('cors');
+const path = require('path');
+
 const app = express();
-const PORT = 5000;
-
+app.use(cors());
 app.use(express.json());
-app.use(express.static('public')); // <-- Serve static files from /public
 
-const uri = "mongodb://localhost:27017";
-const dbName = "myDatabase";
-let usersCollection;
+// Serve static files from public/
+app.use(express.static(path.join(__dirname, 'public')));
 
-MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(client => {
-    usersCollection = client.db(dbName).collection('users');
-    console.log("Connected to MongoDB");
-  })
-  .catch(console.error);
+const url = 'mongodb://localhost:27017';
+const client = new MongoClient(url);
+let collection;
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html'); // Optional root route
-});
+async function start() {
+  await client.connect();
+  const db = client.db('mydb');
+  collection = db.collection('users');
+  app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+}
+start();
 
+// Create
 app.post('/users', async (req, res) => {
-  const { name, email } = req.body;
-  const result = await usersCollection.insertOne({ name, email });
-  res.status(201).json({ message: 'User created', id: result.insertedId });
+  const result = await collection.insertOne(req.body);
+  res.send(result);
 });
 
+// Read
 app.get('/users', async (req, res) => {
-  const users = await usersCollection.find().toArray();
-  res.status(200).json(users);
+  const users = await collection.find().toArray();
+  res.send(users);
 });
 
-app.get('/users/:id', async (req, res) => {
-  const user = await usersCollection.findOne({ _id: new ObjectId(req.params.id) });
-  user ? res.json(user) : res.status(404).json({ message: 'User not found' });
-});
-
+// Update
 app.put('/users/:id', async (req, res) => {
   const { name, email } = req.body;
-  const result = await usersCollection.updateOne(
-    { _id: new ObjectId(req.params.id) },
+  const id = req.params.id;
+
+  // Convert the string ID from the frontend to ObjectId
+  const objectId = new ObjectId(id);
+
+  const result = await collection.updateOne(
+    { _id: objectId },
     { $set: { name, email } }
   );
-  result.matchedCount ? res.json({ message: 'User updated' }) : res.status(404).json({ message: 'User not found' });
+
+  res.send(result);
 });
 
+// Delete
 app.delete('/users/:id', async (req, res) => {
-  const result = await usersCollection.deleteOne({ _id: new ObjectId(req.params.id) });
-  result.deletedCount ? res.json({ message: 'User deleted' }) : res.status(404).json({ message: 'User not found' });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  const result = await collection.deleteOne({ _id: new ObjectId(req.params.id) });
+  res.send(result);
 });
