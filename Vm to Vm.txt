@@ -1,0 +1,33 @@
+Create a VM1 and VM2 folder in Document
+
+VM1
+
+vagrant init bento/ubuntu-22.04 --box-version 202502.21.0
+
+#remove hashtag from private, public, last second configure and end
+#change private ip address 192.168.56.33
+
+vagrant up
+vagrant ssh
+sudo apt install net-tools
+ifconfig
+touch user.txt
+nano user.txt
+cat user.txt
+scp user.txt vagrant@192.168.56.34:/home/vagrant/       (ip address of VM2)
+
+
+
+VM2
+
+vagrant init bento/ubuntu-22.04 --box-version 202502.21.0
+
+#remove hashtag from private, public, last second configure and end
+#change private ip address 192.168.56.34
+
+vagrant up
+vagrant ssh
+sudo apt install net-tools
+ifconfig
+
+cat user.txt
