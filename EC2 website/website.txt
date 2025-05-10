@@ -43,13 +43,13 @@ In the terminal, run these commands one by one:
 
 sudo apt update
 
-sudo apt install apache2 -y
+sudo apt install apache2 
 
 sudo systemctl start apache2
 
 sudo systemctl enable apache2
 
-
+apache2 -v
 
 
 4. Add Static Website Content
