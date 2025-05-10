@@ -1,21 +1,16 @@
-Update system:
-sudo apt update && sudo apt upgrade -y
+sudo apt update 
 
-Install Apache:
-sudo apt install apache2 -y
+sudo apt install apache2 
 
-Go to web root:
+sudo systemctl start apache2
+sudo systemctl enable apache2
+
+apache2 -v
+
 cd /var/www/html
 
-(Optional) Remove default page:
 sudo rm index.html
 
-Create HTML file:
 sudo nano dashboard.html
-(Paste your HTML, then press Ctrl+O, Enter, Ctrl+X)
 
-Set permissions:
-sudo chmod 644 dashboard.html
-
-Open in browser:
-Go to http://localhost/dashboard.html
+http://localhost/filename
