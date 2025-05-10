@@ -6,6 +6,11 @@ create inbound rule for port number 3000
 
 sudo apt update
 sudo apt install nodejs npm
+sudo npm install -g pm2
+
 git clone link
 cd folder name
 pm2 start server.js
+
+http://ipaddress:3000
+
